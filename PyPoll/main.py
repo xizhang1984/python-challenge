@@ -49,8 +49,8 @@ print("-------------------------")
 
 # Print to a text file: election_results.txt
 
-with open('election_analysis.txt', 'w') as text:
-    text.write("Election Analysis\n")
+with open('election_result.txt', 'w') as text:
+    text.write("Election result\n")
     text.write("---------------------------------------\n")
     text.write("Total Vote: " + str(total_votes) + "\n")
     text.write("---------------------------------------\n")
@@ -58,4 +58,5 @@ with open('election_analysis.txt', 'w') as text:
         text.write(unique_candidate[i] + ": " + str(vote_in_percentage[i]) +"% (" + str(count_vote[i]) + ")\n")
     text.write("---------------------------------------\n")
     text.write("The winner is: " + winner + "\n")
+
     text.write("---------------------------------------\n")
