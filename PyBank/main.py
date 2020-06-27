@@ -1,6 +1,5 @@
 import os
 
-# module for reading cs file
 
 import csv
 
@@ -13,7 +12,6 @@ with open(csvpath) as csvfile:
 
     csvreader = csv.reader(csvfile, delimiter=',')
     print(csvreader)
-
 
 
     count_total_months = 0
@@ -32,12 +30,14 @@ with open(csvpath) as csvfile:
     for row in csvreader:
             #print(row)
             count_total_months = count_total_months +1
-            sum_total_revenue = sum_total_revenue + int(row[1])
+            sum_total_revenue += int(row[1])
             
+            if count_total_months==1:
+                prev_revenue = int(row[1])
+
             rev_increase = int(row[1]) - prev_revenue
-            prev_revenue =  int(row[1])
             total_revenue_change = total_revenue_change + rev_increase
-           
+            prev_revenue =  int(row[1])
             if(rev_increase > greatest_increase_amt):
                 greatest_increase_amt = rev_increase
                 greatest_increase_date = row[0]
@@ -46,7 +46,7 @@ with open(csvpath) as csvfile:
                 greatest_decrease_amt = rev_increase
                 greatest_decrease_date = row[0]
 
-    avg_change = total_revenue_change/count_total_months
+    avg_change = total_revenue_change/(count_total_months-1)
 
     #create and open output file to write resuts to
     textfile_path = os.path.join(".", "analysis", "financialanalysis.txt")
